@@ -535,7 +535,8 @@ TRANSITION: “Let’s wrap & share the handouts.”
 
 ## Q&A + Resources
 - We’ll share: slide deck, README, copy-paste prompts
-- Suggest a **team prompt repo** with PR reviews
+- https://github.com/bodyhigh/prompt-architect
+- [Project Glidepath](https://github.com/bodyhigh/project-glidepath)
 
 **Thank you!**
 
