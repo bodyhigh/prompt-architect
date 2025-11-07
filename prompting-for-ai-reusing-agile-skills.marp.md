@@ -13,10 +13,12 @@ footer: "Threewire Systems • Prompting for AI - Reusing Agile Skills • Promp
 ## Prompting for AI - Reusing Agile Skills
 **Reuse your Agile skills to get great AI results**
 
+https://github.com/bodyhigh/prompt-architect
+
 1) Prompt basics (LLM, context, tokens)
 2) From Agile → prompting (AC, user stories, Gherkin)
 3) **Prompt Architect** (Full + Lite)
-4) Live-style examples + tips
+4) Example executions + tips
 5) Q&A + handoff docs
 
 <!--
