@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PromptArchitectTrace",
+  "type": "object",
+  "required": [
+    "run_id",
+    "timestamp",
+    "version",
+    "mode",
+    "objective",
+    "final_prompt_hash_sha256"
+  ],
+  "properties": {
+    "run_id": {"type":"string","format":"uuid"},
+    "timestamp": {"type":"string","format":"date-time"},
+    "version": {"type":"string"},
+    "mode": {"type":"string","enum":["lite","full"]},
+    "strict_mode": {"type":"boolean"},
+    "audit_trace": {"type":"boolean"},
+    "objective": {"type":"string"},
+    "audience_output": {"type":"string"},
+    "inputs_summary": {"type":"string"},
+    "policy": {
+      "type":"object",
+      "properties":{
+        "pii_phi_masking":{"type":"boolean"},
+        "cui_marking":{"type":"boolean"},
+        "downstream_memory":{"type":"string","enum":["off","ephemeral","persistent"]}
+      },
+      "additionalProperties": false
+    },
+    "sections_present": {
+      "type":"array",
+      "items":{"type":"string"}
+    },
+    "final_prompt_hash_sha256": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "model_info": {
+      "type":"object",
+      "properties":{"name":{"type":"string"},"max_tokens":{"type":"integer"}},
+      "additionalProperties": true
+    },
+    "redactions_count": {"type":"integer","minimum":0},
+    "anomalies": {
+      "type":"array",
+      "items":{"type":"string"}
+    }
+  },
+  "additionalProperties": false
+}
