@@ -115,3 +115,71 @@ The Full version also supports policy toggles for PII masking and CUI marking, a
 ---
 
 For detailed templates, see the files in `templates/`. For examples, see `examples/`. The trace log schema is in `docs/trace-schema.json`. The hashing script for auditing is in `scripts/hash-blueprint.ts`.
+
+
+## 8) Archive & Recipes
+
+**Archive** – Deep research assessments live in `/assessments/`. Each file follows the pattern `<repo>-assessment-v<version>.md` and contains a comprehensive report with scorecards, UX plans, and recommendations. Example: [prompt-architect-assessment-v2.3.0](assessments/prompt-architect-assessment-v2.3.0.md).
+
+### Recipes
+
+Use these **Narrative Asks** with **Prompt Architect — Lite or Full**.  
+Tip: When Architect asks its 3 intake questions, paste the recipe’s block as your answer.
+
+#### Recipe 1 — Deep Research: Repository Assessment (GitHub)
+
+**Purpose**: Evidence-based, static assessment of a GitHub repo with scorecard, UX test plan, and tiered recommendations.
+
+**Narrative Ask**  
+Objective: Produce a static, evidence-based assessment of a GitHub repository suitable for leadership and engineers. Include: (1) purpose restatement, (2) Fit-to-Ask verdict (Yes/No/Partial) with 2–4 evidence bullets, (3) AI Agent Capability Scorecard (0–5) with Score/Why/Evidence/Action≤3, (4) UX Walkthrough Test Plan (≥12 scenarios with steps, expected, data to capture, acceptance), (5) end‑user intuitiveness + Lite Disclosure Matrix, (6) feedback/memory/audit review (current→target→gaps), (7) tiered improvements (Minor/Moderate/Major/Full Redesign) with impact/complexity/risks/migration, (8) verification plan and references.  
+Audience & Output format: Senior engineer & product owner; Markdown report.  
+Inputs available:
+- repo_url: `<PASTE GITHUB REPO URL>`
+- branch: `main`
+- connectors: GitHub (read‑only).  
+Notes: Static analysis only (no code execution). Cite non-obvious claims to specific files/lines; quotes ≤25 words. Record default branch + latest commit hash/date.
+
+**Connectors used**: GitHub  
+**Scope**: Static analysis only; no builds/runners.
+
+#### Recipe 2 — Requirements Synthesis from a Google Drive Folder
+
+**Purpose**: Turn a folder of notes/specs into a single, source‑cited PRD draft.
+
+**Narrative Ask**  
+Objective: Synthesize a concise Product Requirements Draft (PRD) from a Google Drive folder of notes/specs. Output sections: Problem, Users/Jobs, In/Out of Scope, Flows, Acceptance Criteria, Risks, Open Questions, References. Inline‑cite each claim to Drive file + heading.  
+Audience & Output format: Product/engineering leads; Markdown PRD.  
+Inputs available:
+- drive_folder: `<PASTE DRIVE FOLDER LINK/ID>`
+- connectors: Google Drive (read‑only).  
+Notes: Static synthesis only; preserve ambiguity as “Unknowns” with how‑to‑verify steps. Quote ≤25 words; otherwise paraphrase.
+
+**Connectors used**: Google Drive  
+**Scope**: Read‑only docs; no external tools.
+
+#### Recipe 3 — Local Files Quick Audit (Security & Licenses)
+
+**Purpose**: Scan a local file set (zipped or uploaded) for obvious security smells and license headers; produce a punch‑list.
+
+**Narrative Ask**  
+Objective: Perform a static quick audit of uploaded project files for (a) obvious security smells (hard‑coded secrets, wide CORS, missing HTTPS mentions), and (b) OSS license headers/presence. Output a punch‑list with severity (H/M), file:line cites, and a short “How to verify” step per finding.  
+Audience & Output format: Engineering; Markdown checklist.  
+Inputs available:
+- local_files: (uploaded archive or files in chat)
+- connectors: Local Files.  
+Constraints: Static scan only; no execution. Prefer primary file cites. Mask sensitive strings.
+
+**Connectors used**: Local Files  
+**Scope**: Static content inspection only.
+
+#### chatgpt.com Scope Guardrails (applies to all recipes)
+
+- ✅ **Allowed**: GitHub, Google Drive, Local Files connectors (read‑only); limited web lookups of primary standards.  
+- 🚫 **Exclude**: Custom runtimes, code execution, background jobs, long‑running crawlers, unsupported external services.  
+- 🔒 **Privacy**: Redact PII/PHI; best‑effort masking only.  
+- 🤖 **Static only**: No builds, no tests, no infra changes — analysis and synthesis are fine.
+
+#### Why a Narrative Ask?
+
+- **Novices**: A short paragraph is easier; Architect turns it into a **Final Prompt Blueprint**.  
+- **Power users**: Keep predefined templates in `/templates/`.
