@@ -12,6 +12,7 @@
 
 - **Lite** – fastest, minimal, no policy toggles. Use for agendas, short specs, emails, simple lists.
 - **Full** – adds guardrails (PII/PHI masking, CUI markings), verification scaffolding, and iteration notes. Use for security/compliance/customer deliverables, or anything you’d normally pair with acceptance criteria and tests.
+- **Minimal Scaffold** – a context-tagged shell with no intake gate. Use when you already know the essentials and just need a clean spec to drop into CLI agents or Codex.
 
 ### Workflow (both versions)
 
@@ -23,6 +24,14 @@
 **Strict Mode:** Enabled by default. It enforces the intake gate, non‑execution guarantee, audit trace, and fail‑closed behaviour.
 
 ---
+
+### Minimal Scaffold
+
+The Minimal Scaffold is a SPEC-only template that keeps the familiar `<role> <goal> <context> <inputs> <tasks> <output_format> <guardrails>` tags but strips out the intake gate, revision logic, and helper loops. It lives in `templates/prompt-scaffold-minimal.md`.
+
+Use it when you are driving Prompt Architect from CLI runners, Codex/Amara agents, or scripted workflows where you already know the objective, audience, and inputs. Fill in each tag manually (or via automation), paste the result into your model, and run it without any back-and-forth intake.
+
+Lite and Full remain the right choice when you want built-in intake, audit traces, feedback handling, or policy toggles. The Minimal Scaffold simply gives you a fast, non-interactive shell that still honors the same tagged structure tools can lint or reuse.
 
 ## 2) Experimental Features
 
